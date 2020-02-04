@@ -9,6 +9,17 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final username_controller = TextEditingController();
+  final password_controller = TextEditingController();
+  
+  @override
+  void dispose(){
+
+    username_controller.dispose();
+    password_controller.dispose();
+    super.dispose();
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +45,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextField(
+                  controller: username_controller,
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(
                     fontSize: 14.0,
@@ -49,6 +61,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextField(
+                  controller: password_controller,
                   keyboardType: TextInputType.text,
                   obscureText: true,
                   style: TextStyle(
@@ -57,6 +70,7 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(height: 10.0),
                 Container(
+                  
                   height: 50.0,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -72,7 +86,8 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onTap: (){
-                      print('Login tapped');
+                      print(username_controller.toString());
+                      print(password_controller.toString());
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
                     }
                   ),
