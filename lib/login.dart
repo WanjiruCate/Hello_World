@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -69,6 +71,7 @@ class _LoginState extends State<Login> {
                     ),
                     onTap: (){
                       print('Login tapped');
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
                     },
                   ),
                 ),
