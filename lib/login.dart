@@ -57,6 +57,7 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(height: 10.0),
                 Container(
+                  height: 50.0,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
@@ -73,7 +74,7 @@ class _LoginState extends State<Login> {
                     onTap: (){
                       print('Login tapped');
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
-                    },
+                    }
                   ),
                 ),
                 SizedBox(height: 30.0),

@@ -18,7 +18,7 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
+            padding: const EdgeInsets.only( right: 16.0, left: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -73,6 +73,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 SizedBox(height: 10.0),
                 Container(
+                  height: 50.0,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
@@ -87,7 +88,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     onTap: (){
-                      print('SigUp tapped');
+                      //print('SigUp tapped');
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
                     },
                   ),
