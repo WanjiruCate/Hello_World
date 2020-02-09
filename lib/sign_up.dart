@@ -9,6 +9,18 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final usernamecontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+  final confirmpasswordcontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    usernamecontroller.dispose();
+    passwordcontroller.dispose();
+    confirmpasswordcontroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +30,7 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.only( right: 16.0, left: 16.0),
+            padding: const EdgeInsets.only(right: 16.0, left: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -34,6 +46,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 TextField(
+                  controller: usernamecontroller,
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(
                     fontSize: 14.0,
@@ -49,6 +62,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 TextField(
+                  controller: passwordcontroller,
                   keyboardType: TextInputType.text,
                   obscureText: true,
                   style: TextStyle(
@@ -65,6 +79,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 TextField(
+                  controller: confirmpasswordcontroller,
                   keyboardType: TextInputType.text,
                   obscureText: true,
                   style: TextStyle(
@@ -87,9 +102,28 @@ class _SignUpState extends State<SignUp> {
                         color: Colors.black,
                       ),
                     ),
-                    onTap: (){
-                      //print('SigUp tapped');
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
+                    onTap: () {
+                      print('SigUp tapped');
+                      if (passwordcontroller.text ==
+                          confirmpasswordcontroller.text) {
+                            print('Password : '+ passwordcontroller.text);
+                            print('ConfirmPassword: ' +confirmpasswordcontroller.text);
+                            print('Email :' +usernamecontroller.text);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Home()));
+                      } else {
+                        return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Text('Paswords do not match'),
+                              elevation: 6.0,
+                            );
+                          },
+                        );
+                      }
                     },
                   ),
                 ),
@@ -106,7 +140,10 @@ class _SignUpState extends State<SignUp> {
                             )),
                         onTap: () {
                           print('LogIn tapped');
-                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Login()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Login()));
                         },
                       )
                     ])

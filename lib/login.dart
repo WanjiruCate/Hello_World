@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:world_hello/sign_up.dart';
+import 'dart:async';
+
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'home.dart';
 
@@ -86,8 +90,8 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onTap: (){
-                      print(username_controller.toString());
-                      print(password_controller.toString());
+                      print(username_controller.text);
+                      print(password_controller.text);
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
                     }
                   ),
