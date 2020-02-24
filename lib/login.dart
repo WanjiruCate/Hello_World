@@ -15,15 +15,14 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final username_controller = TextEditingController();
   final password_controller = TextEditingController();
-  
-  @override
-  void dispose(){
 
+  @override
+  void dispose() {
     username_controller.dispose();
     password_controller.dispose();
     super.dispose();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +32,8 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0,bottom: 16.0),
+            padding: const EdgeInsets.only(
+                top: 16.0, right: 16.0, left: 16.0, bottom: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -74,7 +74,6 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(height: 10.0),
                 Container(
-                  
                   height: 50.0,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -82,19 +81,21 @@ class _LoginState extends State<Login> {
                     color: Colors.deepOrange,
                   ),
                   child: InkWell(
-                    child: Text(
-                      'Log In',
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        color: Colors.black,
+                      child: Text(
+                        'Log In',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    onTap: (){
-                      print(username_controller.text);
-                      print(password_controller.text);
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
-                    }
-                  ),
+                      onTap: () {
+                        print(username_controller.text);
+                        print(password_controller.text);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Home()));
+                      }),
                 ),
                 SizedBox(height: 30.0),
                 Row(
@@ -108,8 +109,26 @@ class _LoginState extends State<Login> {
                               color: Colors.blueAccent,
                             )),
                         onTap: () {
-                          print('SignUp tapped');
-                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignUp()));
+                          if (RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(username_controller.text)) {
+                            print('SignUp tapped');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        SignUp()));
+                          } else {
+                            return showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        'Ummhh, that does not look like an email'),
+                                    elevation: 10.0,
+                                  );
+                                });
+                          }
                         },
                       )
                     ])

@@ -103,9 +103,9 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     onTap: () {
-                      print('SigUp tapped');
-                      if (passwordcontroller.text ==
-                          confirmpasswordcontroller.text) {
+                      print('SignUp tapped');
+                      if ((passwordcontroller.text ==
+                          confirmpasswordcontroller.text) && RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(usernamecontroller.text) ) {
                             print('Password : '+ passwordcontroller.text);
                             print('ConfirmPassword: ' +confirmpasswordcontroller.text);
                             print('Email :' +usernamecontroller.text);
@@ -118,7 +118,7 @@ class _SignUpState extends State<SignUp> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              content: Text('Paswords do not match'),
+                              content: Text('Check if email is correct format and the paswords match'),
                               elevation: 6.0,
                             );
                           },
